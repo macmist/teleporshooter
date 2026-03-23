@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwrc6nqqk1r1l"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_j5p6s"]
+[ext_resource type="Texture2D" uid="uid://cjs6x5o5fqbqo" path="res://icon.svg" id="1_rrs7x"]
+[ext_resource type="PackedScene" uid="uid://bu37k47vs0qre" path="res://scenes/bullet/Bullet.tscn" id="2_np506"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_va4l1"]
+radius = 62.5
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_j5p6s")
+bullet_scene = ExtResource("2_np506")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rrs7x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_va4l1")
+
+[node name="Bullet Spawner" type="Marker2D" parent="."]
+position = Vector2(0, 64)
