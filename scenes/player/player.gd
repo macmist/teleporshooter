@@ -14,6 +14,8 @@ enum Direction {UP, DOWN, LEFT, RIGHT}
 
 var last_look_direction = Vector2.DOWN
 
+var active_bullet = null
+
 
 var move_actions = {
 	"move_left": Vector2.LEFT,
@@ -28,6 +30,10 @@ var look_actions = {
 	"look_up": Vector2.UP,
 	"look_down": Vector2.DOWN
 }
+
+
+func _init() -> void:
+	add_to_group("player")
 
 
 func add_input(stack: Array[Vector2], dir: Vector2):
@@ -74,8 +80,16 @@ func shoot():
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = bullet_spawner.global_position
 	bullet.direction = last_look_direction
-	
+	bullet.connect("teleport_requested", _on_bullet_teleport)
 	get_tree().current_scene.add_child(bullet)
+	active_bullet = bullet
+
+func teleport():
+	active_bullet.request_teleport()
+	
+func _on_bullet_teleport(position: Vector2):
+	global_position = position
+	active_bullet = null
 
 func _physics_process(delta):
 	get_input()
@@ -83,4 +97,7 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	if Input.is_action_just_pressed("shoot"):
-		shoot()
+		if active_bullet != null:
+			teleport()
+		else:
+			shoot()
