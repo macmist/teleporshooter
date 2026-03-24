@@ -32,10 +32,6 @@ var look_actions = {
 }
 
 
-func _init() -> void:
-	add_to_group("player")
-
-
 func add_input(stack: Array[Vector2], dir: Vector2):
 	if dir not in stack:
 		stack.append(dir)

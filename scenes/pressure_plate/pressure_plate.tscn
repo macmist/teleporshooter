@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://urn5fc546r8q"]
+
+[ext_resource type="Script" path="res://scenes/pressure_plate/pressure_plate.gd" id="1_dclro"]
+[ext_resource type="Texture2D" uid="uid://cjs6x5o5fqbqo" path="res://icon.svg" id="1_xpoej"]
+[ext_resource type="PackedScene" uid="uid://ow4md2jcl3c" path="res://components/trigger_component/trigger_component.tscn" id="3_a48bq"]
+[ext_resource type="PackedScene" uid="uid://df56xmxny14ml" path="res://components/activable_component/activable_component.tscn" id="4_o7kch"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cksti"]
+size = Vector2(128, 128)
+
+[node name="PressurePlate" type="Node2D"]
+script = ExtResource("1_dclro")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xpoej")
+
+[node name="TriggerComponent" parent="." instance=ExtResource("3_a48bq")]
+trigger_groups = Array[String](["Player"])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerComponent"]
+shape = SubResource("RectangleShape2D_cksti")
+
+[node name="ActivableComponent" parent="." instance=ExtResource("4_o7kch")]
