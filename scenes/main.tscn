@@ -1,12 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkvr3q7swllk6"]
+[gd_scene load_steps=6 format=3 uid="uid://bkvr3q7swllk6"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_c3p2d"]
 [ext_resource type="PackedScene" uid="uid://dwrc6nqqk1r1l" path="res://scenes/player/Player.tscn" id="1_s4sbr"]
 [ext_resource type="PackedScene" uid="uid://vkydb65i7023" path="res://scenes/door/door.tscn" id="2_s4i3u"]
 [ext_resource type="PackedScene" uid="uid://urn5fc546r8q" path="res://scenes/pressure_plate/pressure_plate.tscn" id="2_tqn14"]
+[ext_resource type="Texture2D" uid="uid://cjs6x5o5fqbqo" path="res://icon.svg" id="5_4k2tt"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_c3p2d")
+
+[node name="Top-Left" type="Marker2D" parent="."]
+position = Vector2(-225, -134)
+
+[node name="Bottom-Right" type="Marker2D" parent="."]
+position = Vector2(1462, 1518)
 
 [node name="PressurePlate" parent="." instance=ExtResource("2_tqn14")]
 position = Vector2(346, 193)
@@ -16,3 +23,27 @@ position = Vector2(650, 318)
 
 [node name="Door" parent="." instance=ExtResource("2_s4i3u")]
 position = Vector2(250, 390)
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls"]
+position = Vector2(618, -111)
+scale = Vector2(13.4, 0.399999)
+texture = ExtResource("5_4k2tt")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Walls"]
+position = Vector2(618, 1500)
+scale = Vector2(13.4, 0.399999)
+texture = ExtResource("5_4k2tt")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Walls"]
+position = Vector2(-206, 705)
+rotation = 1.5708
+scale = Vector2(13.4, 0.399999)
+texture = ExtResource("5_4k2tt")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Walls"]
+position = Vector2(1434, 705)
+rotation = 1.5708
+scale = Vector2(13.4, 0.399999)
+texture = ExtResource("5_4k2tt")

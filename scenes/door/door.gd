@@ -1,32 +1,24 @@
-extends Area2D
+extends Node2D
 
 class_name Door
 
-@onready var sprite: Sprite2D = $Sprite2D
-@onready var collision: CollisionShape2D = $CollisionShape2D
+@onready var collider = $StaticBody2D/CollisionShape2D
+@onready var sprite = $Sprite2D
+
 
 
 var is_open = false
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func _ready():
 	close()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func open():
-	print('opening')
 	is_open = true
-	collision.disabled = true
-	sprite.modulate = Color(0,1,0)
-
+	collider.set_deferred("disabled", true)
+	sprite.modulate = Color(0, 1, 0)
 
 func close():
-	print('closing')
 	is_open = false
-	collision.disabled = false
-	sprite.modulate = Color(1,0,0)
+	collider.set_deferred("disabled", false)
+	
+	sprite.modulate = Color(1, 0, 0)

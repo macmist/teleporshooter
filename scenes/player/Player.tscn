@@ -19,3 +19,5 @@ shape = SubResource("CircleShape2D_va4l1")
 
 [node name="Bullet Spawner" type="Marker2D" parent="."]
 position = Vector2(0, 64)
+
+[node name="Camera2D" type="Camera2D" parent="."]
